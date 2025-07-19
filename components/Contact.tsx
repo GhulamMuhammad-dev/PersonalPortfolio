@@ -19,7 +19,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="max-w-lg  mx-auto py-16   px-4 md:px-0 ">
+    <section id="contact" className="max-w-lg  mx-auto py-16   px-4 md:px-0 ">
       <h2 className="text-2xl font-bold text-center">
         Let’s Build Something Great Together
       </h2>

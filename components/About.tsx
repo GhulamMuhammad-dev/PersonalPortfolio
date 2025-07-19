@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function About() {
   return (
-    <section className="max-w-7xl mx-auto py-16 px-4 md:px-0 flex flex-col md:flex-row items-center justify-center gap-16 md:gap-8  mb-28 " >
+    <section id="about" className="max-w-7xl mx-auto py-16 px-4 md:px-0 flex flex-col md:flex-row items-center justify-center gap-16 md:gap-8  mb-28 " >
       <Image
         src="/images/profileimg.webp"
         alt="Ghulam Muhammad"

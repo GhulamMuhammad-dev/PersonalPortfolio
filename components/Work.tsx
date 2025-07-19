@@ -16,7 +16,7 @@ const projects = [
 
 export default function Work() {
   return (
-    <section className="max-w-7xl mx-auto py-16 px-4 md:px-0 ">
+    <section id="work" className="max-w-7xl mx-auto py-16 px-4 md:px-0 ">
       <h2 className="text-3xl font-bold text-center mb-8 text-gradient">My Work</h2>
       <div className="grid md:grid-cols-2 gap-6">
         {projects.map((p) => (

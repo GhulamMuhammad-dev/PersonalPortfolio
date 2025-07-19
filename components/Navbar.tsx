@@ -1,91 +1,83 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useState, useEffect } from 'react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const pathname = usePathname();
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, targetId: string) => {
+    e.preventDefault();
+    const section = document.querySelector(targetId);
 
-  // Close mobile menu when route changes
-  useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
+    if (section) {
+      const offsetTop = (section as HTMLElement).offsetTop;
 
-  // Navbar links data
-  const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Services', href: '/services' },
-    { name: 'Contact', href: '/contact' },
-  ];
+      // Smooth scroll to target
+      window.scrollTo({ top: offsetTop, behavior: "smooth" });
+
+      // Bounce animation after scroll ends
+      setTimeout(() => {
+        section.animate(
+          [
+            
+            { transform: "translateX(-100px)" },
+            { transform: "translateX(0)" },
+            
+           
+          ],
+          { duration: 1000, easing: "ease-out" }
+        );
+      }, 100); // slightly longer than smooth scroll
+    }
+  };
 
   return (
-    <nav className="bg-white shadow-sm sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center">
-            <Link href="/" className="text-xl font-bold text-gray-900">
-              YourLogo
-            </Link>
-          </div>
+    <motion.nav
+      initial={{ opacity: 0, y: -30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, ease: "easeOut" }}
+      className="flex items-center justify-between w-full px-6 md:px-14 py-4 bg-background border-b border-border"
+    >
+      <Link href="/" className="text-xl font-bold text-foreground">
+        Ghulam<span className="text-primary">.</span>
+      </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
-                  pathname === link.href
-                    ? 'border-indigo-500 text-gray-900'
-                    : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="-mr-2 flex items-center sm:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
-              aria-expanded="false"
-            >
-              <span className="sr-only">Open main menu</span>
-              {isOpen ? (
-                <XMarkIcon className="block h-6 w-6" />
-              ) : (
-                <Bars3Icon className="block h-6 w-6" />
-              )}
-            </button>
-          </div>
-        </div>
+      <div className="hidden md:flex items-center gap-6">
+        <a
+          href="#about"
+          onClick={(e) => handleScroll(e, "#about")}
+          className="text-muted-foreground hover:text-foreground transition"
+        >
+          About
+        </a>
+        <a
+          href="#skills"
+          onClick={(e) => handleScroll(e, "#skills")}
+          className="text-muted-foreground hover:text-foreground transition"
+        >
+          Skills
+        </a>
+        <a
+          href="#work"
+          onClick={(e) => handleScroll(e, "#work")}
+          className="text-muted-foreground hover:text-foreground transition"
+        >
+          Work
+        </a>
+        <a
+          href="#contact"
+          onClick={(e) => handleScroll(e, "#contact")}
+          className="text-muted-foreground hover:text-foreground transition"
+        >
+          Contact
+        </a>
       </div>
 
-      {/* Mobile Navigation */}
-      <div className={`sm:hidden ${isOpen ? 'block' : 'hidden'}`}>
-        <div className="pt-2 pb-3 space-y-1">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
-                pathname === link.href
-                  ? 'bg-indigo-50 border-indigo-500 text-indigo-700'
-                  : 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800'
-              }`}
-            >
-              {link.name}
-            </Link>
-          ))}
-        </div>
-      </div>
-    </nav>
+      <Button asChild className="ml-4">
+        <a href="#contact" onClick={(e) => handleScroll(e, "#contact")}>
+          Let’s Work
+        </a>
+      </Button>
+    </motion.nav>
   );
 }
