@@ -1,7 +1,8 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { CardCarousel } from "@/components/ui/card-carousel";
 
 const testimonials = [
   {
@@ -21,11 +22,44 @@ const testimonials = [
   },
 ];
 
+// ✅ Convert Testimonials to Carousel-friendly Format
+const testimonialCards = testimonials.map((t, i) => ({
+  content: (
+    <motion.div
+      key={i}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      whileHover={{
+        scale: 1.05,
+        rotateX: 5,
+        rotateY: -5,
+        transition: { type: "spring", stiffness: 200, damping: 10 },
+      }}
+      whileTap={{ scale: 0.98 }}
+      transition={{
+        duration: 0.6,
+        ease: "easeOut",
+        delay: i * 0.2,
+      }}
+      viewport={{ once: false, amount: 0.3 }}
+      className="perspective-1000 w-full max-w-sm"
+    >
+      <Card className="bg-transparent border-gray-700 text-gray-300 min-h-[180px]">
+        <CardContent className="p-4 text-center">
+          <p className="italic mb-3">“{t.text}”</p>
+          <p className="font-bold">{t.name}</p>
+          <p className="text-sm text-gray-500">{t.role}</p>
+        </CardContent>
+      </Card>
+    </motion.div>
+  ),
+}));
+
 export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="max-w-7xl mx-auto py-16 px-4 md:px-0"
+      className="max-w-3xl mx-auto py-16 px-4 md:px-0"
     >
       {/* Heading Animation */}
       <motion.h2
@@ -38,37 +72,11 @@ export default function Testimonials() {
         What Professionals Say About Me
       </motion.h2>
 
-      <div className="grid md:grid-cols-3 gap-6">
-        {testimonials.map((t, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            whileHover={{
-              scale: 1.05,
-              rotateX: 5,
-              rotateY: -5,
-              transition: { type: "spring", stiffness: 200, damping: 10 },
-            }}
-            whileTap={{ scale: 0.98 }}
-            transition={{
-              duration: 0.6,
-              ease: "easeOut",
-              delay: i * 0.2,
-            }}
-            viewport={{ once: false, amount: 0.3 }}
-            className="perspective-1000" // for 3D tilt effect
-          >
-            <Card className="bg-transparent border-gray-700 text-gray-300 h-full min-h-[180px]">
-              <CardContent className="p-4">
-                <p className="italic mb-3">“{t.text}”</p>
-                <p className="font-bold">{t.name}</p>
-                <p className="text-sm text-gray-500">{t.role}</p>
-              </CardContent>
-            </Card>
-          </motion.div>
-        ))}
-      </div>
+      {/* ✅ Carousel */}
+      <CardCarousel
+        images={testimonialCards}
+        autoplayDelay={3000}
+      />
     </section>
   );
 }
