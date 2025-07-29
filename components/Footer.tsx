@@ -27,6 +27,13 @@ export default function Footer() {
         </p>
 
         <div className="flex gap-4 text-sm text-muted-foreground">
+            <button
+            onClick={handleCopy}
+            className="hover:text-foreground transition"
+            title="Click to copy"
+          >
+            {copied ? "Email copied!" : "Email: ghulammuhammad.dev@gmail.com"}
+          </button>
           <Link
             href="https://github.com/GhulamMuhammad-dev"
             className="hover:text-foreground transition"
@@ -41,13 +48,6 @@ export default function Footer() {
           >
             LinkedIn
           </Link>
-          <button
-            onClick={handleCopy}
-            className="hover:text-foreground transition"
-            title="Click to copy"
-          >
-            {copied ? "Email copied!" : "Email: ghulammuhammad.dev@gmail.com"}
-          </button>
         </div>
       </div>
     </motion.footer>
