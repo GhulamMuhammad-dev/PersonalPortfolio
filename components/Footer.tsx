@@ -2,8 +2,17 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function Footer() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText("ghulammuhammad.dev@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
+  };
+
   return (
     <motion.footer
       initial={{ opacity: 0, y: 30 }}
@@ -18,15 +27,27 @@ export default function Footer() {
         </p>
 
         <div className="flex gap-4 text-sm text-muted-foreground">
-          <Link href="https://github.com/" className="hover:text-foreground transition">
+          <Link
+            href="https://github.com/GhulamMuhammad-dev"
+            className="hover:text-foreground transition"
+            target="_blank"
+          >
             GitHub
           </Link>
-          <Link href="https://linkedin.com/" className="hover:text-foreground transition">
+          <Link
+            href="https://linkedin.com/in/ghulammuhammad-foundlabs"
+            className="hover:text-foreground transition"
+            target="_blank"
+          >
             LinkedIn
           </Link>
-          <Link href="mailto:youremail@gmail.com" className="hover:text-foreground transition">
-            Email
-          </Link>
+          <button
+            onClick={handleCopy}
+            className="hover:text-foreground transition"
+            title="Click to copy"
+          >
+            {copied ? "Email copied!" : "Email: ghulammuhammad.dev@gmail.com"}
+          </button>
         </div>
       </div>
     </motion.footer>

@@ -8,13 +8,13 @@ export default function About() {
         alt="Ghulam Muhammad"
         width={250}
         height={250}
-        className="rounded-lg border border-gray-600 md:opacity-50 hover:opacity-100  hover:scale-95 transition-opacity duration-300"
+       className="rounded-lg border border-gray-600 animation-pulse-opacity"
       />
       <div>
         <h2 className="text-center md:text-left text-2xl font-bold text-gradient">About Me</h2>
         <h3 className="text-center md:text-left font-bold text-gray-500">Hi, I’m Ghulam Muhammad</h3>
         <p className="text-center md:text-left text-gray-400 mt-3 max-w-[500px]">
-        I design and build modern web applications and AI-powered solutions that help businesses grow and automate efficiently.With expertise in Next.js, Node.js, Tailwind, and TypeScript for web development, and Python, Machine Learning, and AI Agents for intelligent systems, I combine beautiful design with powerful technology to deliver real impact. I love working on micro-SaaS products, custom AI chatbots, and automation tools, and I’m constantly experimenting with cutting-edge AI technologies to stay ahead of the curve.
+        I design and build modern web applications and AI-powered solutions that help businesses grow and automate efficiently.With expertise in React, Next.js, Node.js, Tailwind, Javascript and TypeScript for web development, and Python, Machine Learning, and AI Agents for intelligent systems, I combine beautiful design with powerful technology to deliver real impact. I love working on micro-SaaS products, custom AI chatbots, and automation tools, and I’m constantly experimenting with cutting-edge AI technologies to stay ahead of the curve.
         </p>
       </div>
     </section>

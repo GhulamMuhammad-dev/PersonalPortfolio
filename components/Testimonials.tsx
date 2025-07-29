@@ -6,9 +6,9 @@ import { CardCarousel } from "@/components/ui/card-carousel";
 
 const testimonials = [
   {
-    text: "AI chatbot that boosted our customer support efficiency.",
-    name: "Mr. Thomas Brush",
-    role: "Game Developer",
+    text: "You Just Explain What You Need And He Bring It To Life",
+    name: "Malik  Fasih Awan",
+    role: "Business Developer",
   },
   {
     text: "Professional, fast, and innovative! Delivered an amazing AI solution.",
@@ -75,7 +75,7 @@ export default function Testimonials() {
       {/* ✅ Carousel */}
       <CardCarousel
         images={testimonialCards}
-        autoplayDelay={3000}
+        autoplayDelay={5000}
       />
     </section>
   );
